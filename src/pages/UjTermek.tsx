@@ -1,0 +1,29 @@
+import { useState, type FormEvent } from "react";
+import { Link, useNavigate } from "react-router";
+
+export default function UjTermek() {
+    const [title, setTitle] = useState("")
+    const navigate = useNavigate()
+
+    function handleSubmit(e: FormEvent<HTMLFormElement>){
+        e.preventDefault()
+        alert(`A megadott termék: ${title}`)
+        navigate("/admin")
+    }
+
+    return (
+    <section>
+      <h2>Új termék felvétele</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Termék neve:</label>
+        <input
+          id="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <button type="submit">Mentés</button>
+      </form>
+    </section>
+  )
+}
